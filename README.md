@@ -34,15 +34,57 @@ The maximum possible groupings of adjacent ones are already shown in the figure.
 
 **Procedure**
 
-/* write all the steps invloved */
+Define Inputs/Outputs: Inputs: S (Set), R (Reset), c1k (clock); Outputs: Q, Qbar.
+
+Initialization: Set Q = 0 and Qbar = 1 at the start of the simulation.
+
+SR Flip-Flop Logic: On posedge c1k, compute Q = S | (~R & Q).
+
+Complementary Output: Update Qbar = R | (~S & Qbar) to maintain SR Flip-Flop behavior.
+
+Testbench: Test with combinations of S, R, and c1k to ensure proper Set-Reset functionality.
+
 
 **PROGRAM**
 
-/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
-*/
+ Program for flipflops and verify its truth table in quartus using Verilog programming.
+ ````
+Developed by:MUTHUAKASH M
+RegisterNumber:212225230194
 
+module sr(s,r,clk,q,qbar);
+input s,r,clk;
+output reg q;
+output qbar;
+assign qbar=~q;
+always@(posedge clk)
+begin
+if(s==0&&r==0)
+q<=q;
+else if(s==0&&r==1)
+q<=0;
+else if(s==1&&r==0)
+q<=1;
+else
+q<=1'bx;
+end
+endmodule
+
+````
 **RTL LOGIC FOR FLIPFLOPS**
+
+
+<img width="1169" height="407" alt="image" src="https://github.com/user-attachments/assets/57d27a58-ca5d-4d0b-a5f6-795dc6f194b2" />
+
 
 **TIMING DIGRAMS FOR FLIP FLOPS**
 
+
+<img width="1919" height="568" alt="image" src="https://github.com/user-attachments/assets/3336ebe1-7730-436c-8707-cc79ccfea99f" />
+
+
+
 **RESULTS**
+
+Thus the SR flipflop is implemented and verified.
+
